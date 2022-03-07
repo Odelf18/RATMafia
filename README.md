@@ -65,4 +65,4 @@
 
 ***
 ![Lambo](https://efe.kim/avax/lambo)
-<center>see ya in the lambo &copy; Kzz_ </center>
+<center>see ya in the lambo &copy; NLKzz_ </center>
