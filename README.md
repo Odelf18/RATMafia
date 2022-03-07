@@ -8,7 +8,7 @@
 
 ***
 
-## Setup Config.json :  
+## **Setup config.json** :  
 \
 **HTTPProvider** : The HTTP link to the node (You can create one for free by creating an account to https://moralis.io/speedy-nodes/ DO NOT USE A WEBSERVER!)  
 \
@@ -64,5 +64,41 @@
 <br>
 
 ***
+
+## **HOW TO INSTALL**
+
+These are instructions you only need to execute once.
+
+### **1 - Install Python**
+
+Head towards : https://www.python.org/ and install python **DON'T FORGET TO ADD PYTHON TO THE PATH**.  
+ 
+(you can follow this tutorial : https://www.youtube.com/watch?v=Kn1HF3oD19c)
+
+### **2 - Install Git**
+
+Head towards : http://git-scm.com/downloads and install git.  
+ 
+(you can follow this tutorial : https://www.youtube.com/watch?v=4xqVv2lTo40)
+
+### **3 - Download bot**
+
+Go to the folder where you want to install the bot repository, right click and open the terminal. Then paste :
+
+```git clone https://github.com/NLKzz/RATMafia.git```
+
+Once its finished paste :
+
+```cd RATMafia```
+
+### **4 - Setup bot**
+
+You have now cloned the github repository, you then need to install all the librairies, paste :
+
+```python -m pip install -r requirements.txt```
+
+Once all the downloads are finished the installation of the bot is finished head over to the [Setup config.json](https://github.com/NLKzz/RATMafia#setup-configjson-) section.
+
+***
 ![Lambo](https://efe.kim/avax/lambo)
-<center>see ya in the lambo &copy; NLKzz_ </center>
+<center>see ya in the lambo &copy; Kzz_ </center>
