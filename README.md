@@ -36,6 +36,8 @@
 \
 **gas_limit** : Limit amount of gas each TX can use. (Do not touch this setting.)
 
+<br>
+
 ***
 
 ## Available modes :  
@@ -66,7 +68,7 @@
 ***
 
 ## **HOW TO INSTALL**
-
+<br>
 These are instructions you only need to execute once.
 
 ### **1 - Install Python**
@@ -98,6 +100,8 @@ You have now cloned the github repository, you then need to install all the libr
 ```python -m pip install -r requirements.txt```
 
 Once all the downloads are finished the installation of the bot is finished head over to the [Setup config.json](https://github.com/NLKzz/RATMafia#setup-configjson-) section.
+
+<br>
 
 ***
 ![Lambo](https://efe.kim/avax/lambo)
