@@ -1,0 +1,20 @@
+{
+    "HTTPProvider" : "",
+
+    "metamask_address": "",
+    "metamask_private_key": "",
+
+    "api_id" : ,
+    "api_hash" : "",
+    
+    "token_paired_address" : "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+
+    "amount_in": 0.1,
+    "blocks_to_wait": 0, 
+    "slippage": 40, 
+
+    "gas_price_superfast" : 150,
+    "gas_price_fast" : 100,
+    "gas_price_normal" : 60,
+    "gas_limit" : 1500000
+}
