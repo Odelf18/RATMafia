@@ -103,6 +103,22 @@ Once all the downloads are finished the installation of the bot is finished head
 
 <br>
 
+## HOW TO UPDATE
+
+<br>
+
+When a new update is made to the repo you need to download the latest versions, in order to do that simply go to the root folder of the sniper 
+
+```C:/../RATMafia/```
+
+Right click open the terminal and simply paste:
+
+```git pull ```
+
+Your sniper is now up to date !
+
+<br>
+
 ***
 ![Lambo](https://efe.kim/avax/lambo)
 <center>see ya in the lambo &copy; Kzz_ </center>
