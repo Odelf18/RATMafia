@@ -14,7 +14,7 @@ class bot():
         self.factory_address = "0x9Ad6C38BE94206cA50bb0d90783181662f0Cfa10"
         self.max_uint256 = 115792089237316195423570985008687907853269984665640564039457584007913129639935
 
-        print("\n Snipe telegram mode")
+        print("\nSnipe telegram mode")
         self.w3 = self.connect()
         self.address, self.private_key = self.setup_address()
         self.buy_amount = self.setup_buy()
@@ -83,12 +83,12 @@ class bot():
         gas_price_normal = int(self.w3.toWei(keys['gas_price_normal'], 'gwei'))
         self.gas_limit = keys['gas_limit']
         print("\n" + text.YELLOW + "-" * 100 + style.RESET)
-        print(f"\nVeuillez choisir une stratégie pour les gas fees :")
+        print(f"\nChoose your gas strategy:")
         print(f"\n{text.RED}  => [1] SUPERFAST gas price{style.RESET}")
         print(f"{text.YELLOW}  => [2] FAST gas price{style.RESET}")
         print(f"{text.CYAN}  => [3] NORMAL gas price{style.RESET}")
         while True:  
-            gas_strategy = int(input("\nVeuillez indiquer votre choix: "))
+            gas_strategy = int(input("\nEnter your choice: "))
             if(gas_strategy == 1):
                 self.gas_price = gas_price_superfast
                 break
@@ -99,10 +99,10 @@ class bot():
                 self.gas_price = gas_price_normal
                 break
             else:
-                print(f"{text.RED}Veuillez indiquer un choix parmis ceux proposés plus haut.{style.RESET}")
+                print(f"{text.RED}Please chose one of the strategies specified above.{style.RESET}")
                 continue
         print("\n" + text.YELLOW + "-" * 100 + style.RESET)
-
+        
     def setup_token(self):
         with open("./ABIs/erc20_abi.json") as f:
             contract_abi = json.load(f)
