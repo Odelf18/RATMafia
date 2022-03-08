@@ -1,5 +1,7 @@
 import json, sys, tj_snipe_manually, tj_snipe_telegram, tj_snipe_liquidity, tj_approve
 from style import style, text
+import os
+os.system('cls')
 
 header = """
 ----------------------------------------------------
