@@ -7,7 +7,7 @@ with open("config.json") as f:
 
 class bot():
     def __init__(self):
-        print("Approve contract")
+        print("\n Approve contract")
         self.router_address = "0x60aE616a2155Ee3d9A68541Ba4544862310933d4"
         self.factory_address = "0x9Ad6C38BE94206cA50bb0d90783181662f0Cfa10"
         self.max_uint256 = 115792089237316195423570985008687907853269984665640564039457584007913129639935
