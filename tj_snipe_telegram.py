@@ -14,7 +14,7 @@ class bot():
         self.factory_address = "0x9Ad6C38BE94206cA50bb0d90783181662f0Cfa10"
         self.max_uint256 = 115792089237316195423570985008687907853269984665640564039457584007913129639935
 
-        print("Snipe telegram mode")
+        print("\n Snipe telegram mode")
         self.w3 = self.connect()
         self.address, self.private_key = self.setup_address()
         self.buy_amount = self.setup_buy()
