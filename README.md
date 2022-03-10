@@ -61,7 +61,7 @@
 
 <br>
 
-### - [3] Snipe Token Stealth Launch (Discord Scraper)      ***NEW !***
+### - [3] ***NEW!*** Snipe Token Stealth Launch (Discord Scraper)      
 
 > The contract will automatically be detected in the specified discord channel. If the script detects a string that looks like a contract address he will ask you to verify the arithmetic operation.  
 \
@@ -71,12 +71,12 @@
 
 <br>
 
-### - [3] Snipe Liquidity
+### - [4] Snipe Liquidity
 > Will pre-approve the contract specified by the user and then detect when the liquidity is added, and wait for the given time in the _config.json_ file to toggle the buy transaction. And will track the evolution of the gains/loss of the token, and sell it afterwards.
 
 <br>
 
-### - [4] Approve contract
+### - [5] Approve contract
 > A function to approve any kind of contract on trader joe. (Will use the lowest available fees on the network)
 
 <br>
