@@ -1,19 +1,17 @@
-import json, sys, tj_snipe_manually, tj_snipe_telegram, tj_snipe_liquidity, tj_approve
+import json, sys, tj_snipe_manually, tj_snipe_telegram, tj_snipe_liquidity, tj_snipe_discord, tj_approve
 from style import style, text
 import os
 os.system('cls')
 
 header = """
-----------------------------------------------------
-    ____  ___  ______   __  ______    _____________ 
-   / __ \/   |/_  __/  /  |/  /   |  / ____/  _/   |
-  / /_/ / /| | / /    / /|_/ / /| | / /_   / // /| |
- / _, _/ ___ |/ /    / /  / / ___ |/ __/ _/ // ___ |
-/_/ |_/_/  |_/_/    /_/  /_/_/  |_/_/   /___/_/  |_|
-                                                    
-                      v0.1.0
-            Sniper Bot created by @0xKzz_                 
-----------------------------------------------------
+                            ____  ___  ______   __  ______    _____________                         
+                           / __ \/   |/_  __/  /  |/  /   |  / ____/  _/   |                        
+                          / /_/ / /| | / /    / /|_/ / /| | / /_   / // /| |                        
+                         / _, _/ ___ |/ /    / /  / / ___ |/ __/ _/ // ___ |                        
+                        /_/ |_/_/  |_/_/    /_/  /_/_/  |_/_/   /___/_/  |_|                        
+                                                                                                    
+                                               v0.1.1                                               
+                                   Sniper Bot created by @0xKzz_                                    
 """
 
 class sniperConfig():
@@ -48,23 +46,15 @@ class sniperConfig():
         print(f"\n{style.ITALIC}What action do you want to do?{style.RESET}")
         print(f"\n  [1] Snipe Token Stealth Launch (Manually)")
         print(f"  [2] Snipe Token Stealth Launch (Telegram Scrapper)")
-        print(f"  [3] Snipe Liquidity")
-        print(f"  [4] Approve contract")
+        print(f"  [3] Snipe Token Stealth Launch (Discord Scrapper)")
+        print(f"  [4] Snipe Liquidity")
+        print(f"  [5] Approve contract")
 
         while True :
-            inputChoice = int(input("{}{}Please enter your choice :{} ".format(text.YELLOW, style.UNDERLINE, style.RESET)))
+            inputChoice = int(input("{}{}\nPlease enter your choice :{} ".format(text.YELLOW, style.UNDERLINE, style.RESET)))
 
-            if inputChoice == 1:
-                self.mode = 1
-                break
-            elif inputChoice == 2:
-                self.mode = 2
-                break
-            elif inputChoice == 3:
-                self.mode = 3
-                break
-            elif inputChoice == 4:
-                self.mode = 4
+            if inputChoice in (1,2,3,4,5) :
+                self.mode = inputChoice
                 break
             else:
                 print(f"{text.RED}Please enter a valid mode.{style.RESET}")
@@ -81,7 +71,6 @@ class sniperConfig():
                         print("\n" + text.YELLOW + "=" * 50)
                         print("End of the script.")
                         print("\n" + "=" * 50 + style.RESET)
-                        sys.exit()
 
         if(self.mode == 2):
             bot = tj_snipe_telegram.bot()
@@ -94,14 +83,23 @@ class sniperConfig():
                         sys.exit()
 
         if(self.mode == 3):
-            bot = tj_snipe_liquidity.bot()
+            bot = tj_snipe_discord.bot()
+            if bot.buyToken():   
+                if bot.approve():
+                    if bot.amount_to_sell():
+                        print("\n" + text.YELLOW + "=" * 50)
+                        print("End of the script.")
+                        print("\n" + "=" * 50 + style.RESET)
+                        sys.exit()
 
         if(self.mode == 4):
-            bot = tj_approve.bot()
+            bot = tj_snipe_liquidity.bot()
 
+        if(self.mode == 5):
+            bot = tj_approve.bot()
 
 ################################################ MAIN ################################################
 
 #Print the welcome message, only once.
-print(text.YELLOW + header + style.RESET)
+print(text.YELLOW + "-" * 100 + header + "-" * 100 + style.RESET + "\n")
 sniperConfig()

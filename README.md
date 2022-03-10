@@ -18,7 +18,9 @@
 \
 **api_id** : https://my.telegram.org/auth sign in using your telegram informations and paste here the variable "App api_id".  
 \
-**api_hash** : https://my.telegram.org/auth sign in using your telegram informations and paste here the variable "App api_hash".  
+**api_hash** : https://my.telegram.org/auth sign in using your telegram informations and paste here the variable "App api_hash".    
+\
+***NEW !*** - **discord_token** : Find your discord account token following this tutorial : https://www.youtube.com/watch?v=YEgFvgg7ZPI and paste it.  
 \
 **token_paired_address** : The address of the coin with which the token is paired. For example UNIV/WAVAX, the token $UNIV is paired with the $WAVAX coin. (Currently not implemented in all functions. To avoid bugs dont touch it.)  
 \
@@ -40,7 +42,7 @@
 
 ***
 
-## Available modes :  
+## **Available modes** 
 <br>
 
 ### - [1] Snipe Token Stealth Launch (Manually)
@@ -49,9 +51,23 @@
 
 <br>
 
-### - [2] Snipe Token Stealth Launch (Telegram Scrapper)
+### - [2] Snipe Token Stealth Launch (Telegram Scraper)
 
-> Same functions as the one presented before, but here the contract will automatically be detected in the specified telegram channel. If the script detects a string that looks like a contract address he will ask you to verify the arithmetic operation.
+> Same functions as the one presented before, but here the contract will automatically be detected in the specified telegram channel. If the script detects a string that looks like a contract address he will ask you to verify the arithmetic operation.  
+\
+>In order to scrape a telegram channel it has to be in public, the script will then ask you the telegram name which can be found in the invite link (here paste: fantasmfinance)  
+\
+![tg_screenshot](https://www.zupimages.net/up/22/10/o71d.png)
+
+<br>
+
+### - [3] Snipe Token Stealth Launch (Discord Scraper)      ***NEW !***
+
+> The contract will automatically be detected in the specified discord channel. If the script detects a string that looks like a contract address he will ask you to verify the arithmetic operation.  
+\
+> In order to specify the discord channel you want to snipe, first you need to turn on the developper mode: go to Settings > Advanced > Developper Mode  
+\
+>Once the developper mode is enabled you need to right click on the desired channe land copy the ID of the channel, this will be asked one you've launched the script.
 
 <br>
 
@@ -103,7 +119,9 @@ Once all the downloads are finished the installation of the bot is finished head
 
 <br>
 
-## HOW TO UPDATE
+***
+
+## **HOW TO UPDATE**
 
 <br>
 

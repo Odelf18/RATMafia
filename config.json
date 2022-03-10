@@ -4,8 +4,9 @@
     "metamask_address": "",
     "metamask_private_key": "",
 
-    "api_id" : ,
+    "api_id" :  ,
     "api_hash" : "",
+    "discord_token" : "",
     
     "token_paired_address" : "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
 

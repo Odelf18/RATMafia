@@ -325,6 +325,7 @@ class bot():
 
     def sell_token(self, coef):
         amount_sell = int(self.get_token_balance() * coef)
+
         self.checkGasPrice()
         txn = self.router_contract.functions.swapExactTokensForAVAXSupportingFeeOnTransferTokens(
             amount_sell,
@@ -342,6 +343,7 @@ class bot():
 
         signed_txn = self.w3.eth.account.sign_transaction(txn, self.private_key)
 
+        self.w3.eth.getBalance(self.address)
         txn = self.w3.eth.sendRawTransaction(signed_txn.rawTransaction)
         current_time = self.get_current_time()
         print(f"{text.BLUE}{current_time} | SELL TRANSACTION | Pending.... | Hash : {txn.hex()} {style.RESET}")
@@ -349,7 +351,22 @@ class bot():
         txn_receipt = self.w3.eth.wait_for_transaction_receipt(txn)
         current_time = self.get_current_time()
         if txn_receipt['status'] == 1: 
-            print(f"{text.GREEN}\n{current_time} | SELL TRANSACTION | Transaction successful ! | Tx : {txn.hex()}")
+            lookingForAmount = True
+            i=0
+
+            while lookingForAmount:
+                log = txn_receipt['logs'][i]
+                if(self.w3.toHex(log["topics"][0]) == "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"):
+                    if(log['address'] == '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7'):
+                        self.sell_amount_wei = int(log['data'],16)
+                        lookingForAmount = False
+                i += 1
+
+            variation = ((self.sell_amount_wei / self.buy_amount) - 1) * 100
+
+            print(f"{text.GREEN}\n{current_time} | SELL TRANSACTION | Transaction successful ! | Amount in : {self.buy_amount * 10**-18} AVAX | Amount out : {self.sell_amount_wei * 10**-18} AVAX | Variation : {variation}% | You sold : {coef * 100}% of tokens")
+
+
             print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
             return True
         else:
