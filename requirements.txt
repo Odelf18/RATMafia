@@ -1,4 +1,4 @@
 web3
 telethon
 pynput
-websocket-clientZ
+websocket-client
