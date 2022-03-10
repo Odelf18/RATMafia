@@ -125,7 +125,7 @@ Once all the downloads are finished the installation of the bot is finished head
 
 <br>
 
-When a new update is made to the repo you need to download the latest versions, in order to do that simply go to the root folder of the sniper 
+When a new update is made to the repo you need to download the latest version, in order to do that simply go to the root folder of the sniper 
 
 ```C:/../RATMafia/```
 
