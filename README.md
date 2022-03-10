@@ -67,7 +67,7 @@
 \
 > In order to specify the discord channel you want to snipe, first you need to turn on the developper mode: go to Settings > Advanced > Developper Mode  
 \
->Once the developper mode is enabled you need to right click on the desired channe land copy the ID of the channel, this will be asked one you've launched the script.
+>Once the developper mode is enabled you need to right click on the desired channel and copy the ID of the channel, this will be asked once you've launched the script.
 
 <br>
 
