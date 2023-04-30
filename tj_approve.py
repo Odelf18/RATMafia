@@ -8,8 +8,8 @@ with open("config.json") as f:
 class bot():
     def __init__(self):
         print("\nApprove contract")
-        self.router_address = "0x60aE616a2155Ee3d9A68541Ba4544862310933d4"
-        self.factory_address = "0x9Ad6C38BE94206cA50bb0d90783181662f0Cfa10"
+        self.router_address = "0xc873fEcbd354f5A56E00E710B90EF4201db2448d"
+        self.factory_address = "0x27A6cf5E8350b44273FB10F98D78525c5DAD6d8a"
         self.max_uint256 = 115792089237316195423570985008687907853269984665640564039457584007913129639935
 
         self.w3 = self.connect()
@@ -19,14 +19,14 @@ class bot():
 
     def connect(self):
         w3 = Web3(Web3.HTTPProvider(keys["HTTPProvider"]))
-        if(w3.isConnected):
+        if(w3.is_connected):
             print(text.GREEN + "Script successfully connected to the node !" + style.RESET)
         else:
             print(text.RED + "Script failed to connect to node, please fix the issue." + style.RESET)
         return w3
 
     def setup_address(self):
-        wallet_address = self.w3.toChecksumAddress(keys["metamask_address"])
+        wallet_address = self.w3.to_checksum_address(keys["metamask_address"])
         return wallet_address, keys["metamask_private_key"]
 
     def setup_token(self):
@@ -36,8 +36,8 @@ class bot():
         while True:
             token_contract_address = str(input("\n{}Please enter the {}CONTRACT ADDRESS{} of the token {}(needs to be paired with WAVAX){}:{} ".format(text.WHITE, text.RED, text.WHITE, text.RED, text.WHITE, style.RESET)))
 
-            if self.w3.isAddress(token_contract_address):
-                self.token_address = self.w3.toChecksumAddress(token_contract_address)
+            if self.w3.is_address(token_contract_address):
+                self.token_address = self.w3.to_checksum_address(token_contract_address)
                 break
 
             else:
@@ -48,8 +48,8 @@ class bot():
         return token_contract
 
     def is_approved(self):
-        approved = self.token_contract.functions.allowance(self.address, self.router_address).call()
-        requiring_approve = self.token_contract.functions.balanceOf(self.address).call()
+        approved = self.token_contract.functions.allowance(self.address, self.router_address).transact()
+        requiring_approve = self.token_contract.functions.balanceOf(self.address).transact()
         if int(approved) <= int(requiring_approve):
             return False
         else:
@@ -80,11 +80,11 @@ class bot():
             current_time = self.get_current_time()
             if txn_receipt['status'] == 1: 
                 print(f"{text.GREEN}\n{current_time} | APPROVE TRANSACTION | Transaction successful ! | Tx : {txn.hex()}")
-                print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+                print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
                 return True
             else:
                 print(f"{text.RED}\n{current_time} | APPROVE TRANSACTION | Transaction Failed ! | Tx : {txn.hex()}")
-                print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+                print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
                 return False
 
         else:

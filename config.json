@@ -1,16 +1,16 @@
 {
-    "HTTPProvider" : "",
+    "HTTPProvider" : "https://mainnet.infura.io/v3/accc9a64672f4eed8817f2a84ffd3217",
 
     "metamask_address": "",
     "metamask_private_key": "",
 
-    "api_id" :  ,
+    "api_id" :  12788294,
     "api_hash" : "",
     "discord_token" : "",
     
-    "token_paired_address" : "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+    "token_paired_address" : "0x1D987200dF3B744CFa9C14f713F5334CB4Bc4D5D",
 
-    "amount_in": 0.1,
+    "amount_in": 0.0001,
     "blocks_to_wait": 0, 
     "slippage": 40, 
 

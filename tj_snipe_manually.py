@@ -8,9 +8,9 @@ with open("config.json") as f:
 
 class bot():
     def __init__(self):
-        self.wavax_address = "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7"
-        self.router_address = "0x60aE616a2155Ee3d9A68541Ba4544862310933d4"
-        self.factory_address = "0x9Ad6C38BE94206cA50bb0d90783181662f0Cfa10"
+        self.wavax_address = "0x912CE59144191C1204E64559FE8253a0e49E6548"
+        self.router_address = "0xc873fEcbd354f5A56E00E710B90EF4201db2448d"
+        self.factory_address = "0x27A6cf5E8350b44273FB10F98D78525c5DAD6d8a"
         self.max_uint256 = 115792089237316195423570985008687907853269984665640564039457584007913129639935
 
         print("\nSnipe manually mode")
@@ -22,25 +22,25 @@ class bot():
         self.setup_gas_fees()
         self.token_contract = self.setup_token()
         self.path_buying, self.path_selling = self.setup_path()
-        self.token_pair_contract = self.setup_token_pair()
+        #self.token_pair_contract = self.setup_token_pair()
         self.token_name, self.token_symbol = self.setup_token_informations()
         self.txn_recap()
 
     def connect(self):
         w3 = Web3(Web3.HTTPProvider(keys["HTTPProvider"]))
-        if(w3.isConnected):
+        if(w3.is_connected):
             print(text.GREEN + "Script successfully connected to the node !" + style.RESET)
         else:
             print(text.RED + "Script failed to connect to node, please fix the issue." + style.RESET)
         return w3
 
     def setup_address(self):
-        wallet_address = self.w3.toChecksumAddress(keys["metamask_address"])
+        wallet_address = self.w3.to_checksum_address(keys["metamask_address"])
         return wallet_address, keys["metamask_private_key"]
 
     def setup_buy(self):
-        max_amount = self.w3.eth.getBalance(self.address)
-        amount_in = int(self.w3.toWei(keys["amount_in"], 'ether'))
+        max_amount = self.w3.eth.get_balance(self.address)
+        amount_in = int(self.w3.to_wei(keys["amount_in"], 'ether'))
     
         if amount_in >= max_amount:
             print(f"{text.RED}\nPlease modify your amount_in value in the config.json file, not enough funds in balance [0 < amount_in < {max_amount * 10**-18} AVAX]! Exiting script..{style.RESET}")
@@ -58,6 +58,7 @@ class bot():
         return tj_router_contract
 
     def setup_token_pair(self):
+        self.w3 = self.connect()
         with open("./ABIs/tj_factory_abi.json") as f:
             tj_factory_abi = json.load(f)
 
@@ -65,6 +66,7 @@ class bot():
             tj_pair_abi = json.load(f)
 
         factory_contract = self.w3.eth.contract(address = self.factory_address, abi = tj_factory_abi)
+        #token_pair_address = factory_contract.functions.getPair(self.token_address, self.wavax_address).call()
         token_pair_address = factory_contract.functions.getPair(self.token_address, self.wavax_address).call()
         pair_contract = self.w3.eth.contract(address = token_pair_address, abi = tj_pair_abi)
 
@@ -76,9 +78,9 @@ class bot():
         return slippage
 
     def setup_gas_fees(self):
-        gas_price_superfast = int(self.w3.toWei(keys['gas_price_superfast'], 'gwei'))
-        gas_price_fast = int(self.w3.toWei(keys['gas_price_fast'], 'gwei'))
-        gas_price_normal = int(self.w3.toWei(keys['gas_price_normal'], 'gwei'))
+        gas_price_superfast = int(self.w3.to_wei(keys['gas_price_superfast'], 'gwei'))
+        gas_price_fast = int(self.w3.to_wei(keys['gas_price_fast'], 'gwei'))
+        gas_price_normal = int(self.w3.to_wei(keys['gas_price_normal'], 'gwei'))
         self.gas_limit = keys['gas_limit']
         print("\n" + text.YELLOW + "-" * 100 + style.RESET)
         print(f"\nChoose your gas strategy:")
@@ -109,8 +111,8 @@ class bot():
         while True:
             token_contract_address = str(input("\n{}Please enter the {}CONTRACT ADDRESS{} of the token {}(needs to be paired with WAVAX){}:{} ".format(text.WHITE, text.RED, text.WHITE, text.RED, text.WHITE, style.RESET)))
 
-            if self.w3.isAddress(token_contract_address):
-                self.token_address = self.w3.toChecksumAddress(token_contract_address)
+            if self.w3.is_address(token_contract_address):
+                self.token_address = self.w3.to_checksum_address(token_contract_address)
                 break
 
             else:
@@ -159,11 +161,11 @@ class bot():
             current_time = self.get_current_time()
 
             print(f"{text.GREEN}\n {current_time} | BUY TRANSACTION | Transaction successful ! | Bought : {self.get_token_balance()} {self.token_symbol} | For : {self.buy_amount * 10**-18} AVAX | Price per token : {self.bought_token_price} AVAX | Tx : {txn.hex()}")
-            print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+            print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
             return True
         else:
             print(f"{text.RED}\n{current_time} | BUY TRANSACTION | Transaction Failed ! | Tx : {txn.hex()}")
-            print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+            print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
             return False
 
     def is_approved(self):
@@ -201,11 +203,11 @@ class bot():
             current_time = self.get_current_time()
             if txn_receipt['status'] == 1: 
                 print(f"{text.GREEN}\n{current_time} | APPROVE TRANSACTION | Transaction successful ! | Tx : {txn.hex()}")
-                print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+                print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
                 return True
             else:
                 print(f"{text.RED}\n{current_time} | APPROVE TRANSACTION | Transaction Failed ! | Tx : {txn.hex()}")
-                print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+                print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
                 return False
 
         else:
@@ -216,7 +218,7 @@ class bot():
     def price_update(self):
         token_get_reserves = self.token_pair_contract.functions.getReserves().call()
         token0_address = self.token_pair_contract.functions.token0().call()
-        if self.w3.toChecksumAddress(token0_address) == self.token_address:
+        if self.w3.to_checksum_address(token0_address) == self.token_address:
             current_token_price = token_get_reserves[1] / token_get_reserves[0]
         else:
             current_token_price = token_get_reserves[0] / token_get_reserves[1]
@@ -302,7 +304,7 @@ class bot():
 
         signed_txn = self.w3.eth.account.sign_transaction(txn, self.private_key)
 
-        self.w3.eth.getBalance(self.address)
+        self.w3.eth.get_balance(self.address)
         txn = self.w3.eth.sendRawTransaction(signed_txn.rawTransaction)
         current_time = self.get_current_time()
         print(f"{text.BLUE}{current_time} | SELL TRANSACTION | Pending.... | Hash : {txn.hex()} {style.RESET}")
@@ -326,11 +328,11 @@ class bot():
             print(f"{text.GREEN}\n{current_time} | SELL TRANSACTION | Transaction successful ! | Amount in : {self.buy_amount * 10**-18} AVAX | Amount out : {self.sell_amount_wei * 10**-18} AVAX | Variation : {variation}% | You sold : {coef * 100}% of tokens")
 
 
-            print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+            print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
             return True
         else:
             print(f"{text.RED}\n{current_time} | SELL TRANSACTION | Transaction Failed ! | Tx : {txn.hex()}")
-            print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+            print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
             return False
 
     def checkGasPrice(self):

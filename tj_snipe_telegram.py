@@ -9,9 +9,9 @@ with open("config.json") as f:
 
 class bot():
     def __init__(self):
-        self.wavax_address = "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7"
-        self.router_address = "0x60aE616a2155Ee3d9A68541Ba4544862310933d4"
-        self.factory_address = "0x9Ad6C38BE94206cA50bb0d90783181662f0Cfa10"
+        self.wavax_address = "0x912CE59144191C1204E64559FE8253a0e49E6548"
+        self.router_address = "0xc873fEcbd354f5A56E00E710B90EF4201db2448d"
+        self.factory_address = "0x27A6cf5E8350b44273FB10F98D78525c5DAD6d8a"
         self.max_uint256 = 115792089237316195423570985008687907853269984665640564039457584007913129639935
 
         print("\nSnipe telegram mode")
@@ -193,11 +193,11 @@ class bot():
             current_time = self.get_current_time()
 
             print(f"{text.GREEN}\n {current_time} | BUY TRANSACTION | Transaction successful ! | Bought : {self.get_token_balance()} {self.token_symbol} | For : {self.buy_amount * 10**-18} AVAX | Price per token : {self.bought_token_price} AVAX | Tx : {txn.hex()}")
-            print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+            print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
             return True
         else:
             print(f"{text.RED}\n{current_time} | BUY TRANSACTION | Transaction Failed ! | Tx : {txn.hex()}")
-            print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+            print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
             return False
 
     def is_approved(self):
@@ -235,11 +235,11 @@ class bot():
             current_time = self.get_current_time()
             if txn_receipt['status'] == 1: 
                 print(f"{text.GREEN}\n{current_time} | APPROVE TRANSACTION | Transaction successful ! | Tx : {txn.hex()}")
-                print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+                print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
                 return True
             else:
                 print(f"{text.RED}\n{current_time} | APPROVE TRANSACTION | Transaction Failed ! | Tx : {txn.hex()}")
-                print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+                print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
                 return False
 
         else:
@@ -360,11 +360,11 @@ class bot():
             print(f"{text.GREEN}\n{current_time} | SELL TRANSACTION | Transaction successful ! | Amount in : {self.buy_amount * 10**-18} AVAX | Amount out : {self.sell_amount_wei * 10**-18} AVAX | Variation : {variation}% | You sold : {coef * 100}% of tokens")
 
 
-            print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+            print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
             return True
         else:
             print(f"{text.RED}\n{current_time} | SELL TRANSACTION | Transaction Failed ! | Tx : {txn.hex()}")
-            print("Link to Tx : https://snowtrace.io/tx/" + txn.hex() + style.RESET)
+            print("Link to Tx : https://arbiscan.io/tx" + txn.hex() + style.RESET)
             return False
 
     def checkGasPrice(self):
